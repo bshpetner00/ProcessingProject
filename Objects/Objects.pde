@@ -40,7 +40,7 @@ class Ball extends Thing implements Moveable {
   float radius; 
   Ball (float x, float y) { 
     super (x,y); 
-    radius = random (15); 
+    radius = 50; 
   }
   Ball(float x, float y, float r) {
     super(x, y);
@@ -48,6 +48,7 @@ class Ball extends Thing implements Moveable {
   }
 
   void display() {
+    fill (255, 100, 103); 
     ellipse (x,y, radius, radius); 
   }
 
