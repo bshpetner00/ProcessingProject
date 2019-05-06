@@ -38,6 +38,10 @@ public class LivingRock extends Rock implements Moveable {
 
 class Ball extends Thing implements Moveable {
   float radius; 
+  Ball (float x, float y) { 
+    super (x,y); 
+    radius = random (15); 
+  }
   Ball(float x, float y, float r) {
     super(x, y);
     radius = r; 
