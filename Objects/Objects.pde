@@ -38,9 +38,11 @@ public class LivingRock extends Rock implements Moveable {
 
 class Ball extends Thing implements Moveable {
   float radius; 
+  PImage ballpic; 
   Ball (float x, float y) { 
     super (x,y); 
-    radius = 50; 
+    radius = 50;
+    ballpic = loadImage ("ball.png"); 
   }
   Ball(float x, float y, float r) {
     super(x, y);
