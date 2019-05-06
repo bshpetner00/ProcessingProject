@@ -21,9 +21,28 @@ class Rock extends Thing {
     super(x, y);
   }
   
-  void display() {
+  void display(){
+    int r = (int)random(3);
+    if(r == 0){
+      displayS();
+    }else if(r == 1){
+      displayC();
+    }else{
+      displayI();
+    }
+  }
+  
+  void displayS() {
     fill(255,0,0);
     ellipse(x, x, y, y);
+  }
+  
+  void displayC(){
+    //ellipse(x, x, y, y);
+  }
+  
+  void displayI(){
+    //
   }
 }
 
@@ -39,9 +58,13 @@ public class LivingRock extends Rock implements Moveable {
 
 class Ball extends Thing implements Moveable {
   float radius; 
+  PImage ballpic; 
   Ball (float x, float y) { 
     super (x, y); 
     radius = random (15);
+    super (x,y); 
+    radius = 50;
+    ballpic = loadImage ("ball.png"); 
   }
   Ball(float x, float y, float r) {
     super(x, y);
@@ -50,6 +73,8 @@ class Ball extends Thing implements Moveable {
 
   void display() {
     ellipse (x, y, radius, radius);
+    fill (255, 100, 103); 
+    ellipse (x,y, radius, radius); 
   }
 
   void move() {
