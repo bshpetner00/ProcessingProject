@@ -20,9 +20,10 @@ class Rock extends Thing {
   Rock(float x, float y) {
     super(x, y);
   }
-
+  
   void display() {
-    ellipse(x,y,x,y);
+    fill(255,0,0);
+    ellipse(x, x, y, y);
   }
 }
 
@@ -32,23 +33,23 @@ public class LivingRock extends Rock implements Moveable {
   }
   void move() {
     x += random(10); 
-    y += random(10); 
+    y += random(10);
   }
 }
 
 class Ball extends Thing implements Moveable {
   float radius; 
   Ball (float x, float y) { 
-    super (x,y); 
-    radius = random (15); 
+    super (x, y); 
+    radius = random (15);
   }
   Ball(float x, float y, float r) {
     super(x, y);
-    radius = r; 
+    radius = r;
   }
 
   void display() {
-    ellipse (x,y, radius, radius); 
+    ellipse (x, y, radius, radius);
   }
 
   void move() {
