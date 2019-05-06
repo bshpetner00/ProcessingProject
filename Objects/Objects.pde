@@ -36,13 +36,14 @@ public class LivingRock extends Rock implements Moveable {
 }
 
 class Ball extends Thing implements Moveable {
-  Ball(float x, float y) {
-
+  float radius; 
+  Ball(float x, float y, float r) {
     super(x, y);
+    radius = r; 
   }
 
   void display() {
-    /* ONE PERSON WRITE THIS */
+    ellipse (x,y, radius, radius); 
   }
 
   void move() {
