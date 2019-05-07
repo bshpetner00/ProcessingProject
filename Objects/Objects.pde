@@ -33,6 +33,7 @@ public class LivingRock extends Rock implements Moveable {
   float xspeed, yspeed;
   boolean up = true; 
   int counter = 30; 
+  int sides = 1; 
   LivingRock(float x, float y) {
     super(x, y);
     xspeed = random(5);
@@ -66,6 +67,54 @@ public class LivingRock extends Rock implements Moveable {
       }
       x += xspeed;
       counter--;  
+    }
+  }
+  void moveRect(){
+    float s = random(10); 
+    if (counter == 0) {
+      counter = 30; 
+      if (sides == 4) {
+        sides = 1;
+      }
+      else {
+        sides += 1; 
+      }
+    }
+    if (sides == 1) {
+      if (y - s < 0) {
+        counter = 0; 
+      }
+      else {
+        y -= s;
+        counter--;
+      }
+    }
+    else if (sides == 2) {
+      if (x-s < 0) {
+        counter = 0; 
+      }
+      else {
+        x -= s;
+        counter--; 
+      }
+    }
+    else if (sides == 3) {
+      if (y+s > 600) {
+        counter = 0;
+      }
+      else {
+        y += s; 
+        counter--;
+      }
+    }
+    else {
+      if (x+s > 600) {
+        counter = 0; 
+      } 
+      else {
+        x += s; 
+        counter--;
+      }
     }
   }
 }
