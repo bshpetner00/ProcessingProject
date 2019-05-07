@@ -42,10 +42,10 @@ public class LivingRock extends Rock implements Moveable {
     yspeed = random(5); 
   }
   void move() {
-    if (x + xspeed > 600 || x + xspeed < 0){  
+    if (x + xspeed > 1000 || x + xspeed < 0){  
       xspeed = xspeed*-1; 
     }
-    if (y + yspeed > 600 || y + yspeed < 0) {
+    if (y + yspeed > 800 || y + yspeed < 0) {
       yspeed = yspeed*-1; 
     }
     x += xspeed; 
@@ -57,14 +57,14 @@ public class LivingRock extends Rock implements Moveable {
       up = !up; 
     }
     if (up) {
-      if (y + yspeed > 600 || y + yspeed < 0) {
+      if (y + yspeed > 800 || y + yspeed < 0) {
         yspeed = yspeed*-1; 
       }
       y += yspeed;
       counter--; 
     }
     else{
-      if (x + xspeed > 600 || x + xspeed < 0) {
+      if (x + xspeed > 1000 || x + xspeed < 0) {
         xspeed = xspeed*-1; 
       }
       x += xspeed;
@@ -101,7 +101,7 @@ public class LivingRock extends Rock implements Moveable {
       }
     }
     else if (sides == 3) {
-      if (y+s > 600) {
+      if (y+s > 800) {
         counter = 0;
       }
       else {
@@ -110,7 +110,7 @@ public class LivingRock extends Rock implements Moveable {
       }
     }
     else {
-      if (x+s > 600) {
+      if (x+s > 1000) {
         counter = 0; 
       } 
       else {
