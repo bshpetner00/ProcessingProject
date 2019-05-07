@@ -30,12 +30,23 @@ class Rock extends Thing {
 }
 
 public class LivingRock extends Rock implements Moveable {
+  float xspeed, yspeed; 
   LivingRock(float x, float y) {
     super(x, y);
+    xspeed = 0;
+    yspeed = 0; 
   }
   void move() {
-    x += random(10); 
-    y += random(10);
+    xspeed += random(1);
+    yspeed += random(1);
+    if (x + xspeed > 1000 || x + xspeed < 0){  
+      xspeed = xspeed*-1; 
+    }
+    if (y + yspeed > 800 || y + yspeed < 0) {
+      yspeed = yspeed*-1; 
+    }
+    x += xspeed; 
+    y += yspeed; 
   }
 }
 
