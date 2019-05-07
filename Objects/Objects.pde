@@ -6,6 +6,10 @@ interface Moveable {
   void move();
 }
 
+interface Collideable{
+  boolean isTouching(Thing other);
+}
+
 abstract class Thing implements Displayable {
   float x, y;//Position of the Thing
 
@@ -22,7 +26,7 @@ class Rock extends Thing {
   }
   
   void display(){
-    fill(random(256),random(256),random(256));
+    fill(0,0,255);
     ellipse(x, y, (int)random(20)+10,(int)random(20)+10);
     
   }
@@ -175,6 +179,9 @@ class Ball extends Thing implements Moveable {
       y += dY; 
     }
   }
+}
+
+class colorChangingBall extends Ball { 
 }
 
 /*DO NOT EDIT THE REST OF THIS */
