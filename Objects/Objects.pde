@@ -140,25 +140,31 @@ public class LivingRock extends Rock implements Moveable {
 
 class Ball extends Thing implements Moveable {
   float radius; 
-  PImage ballpic; 
+  PImage ballpic;
+  int c,o,l;
   Ball (float x, float y) { 
     super (x, y); 
     radius = random (15);
-    ballpic = loadImage ("ball.png"); 
+    ballpic = loadImage ("ball.png");
+    float c = random(256);
+    float o = random(256);
+    float l = random(256);
   }
   Ball(float x, float y, float r) {
     super(x, y);
     radius = r;
+    float c = random(256);
+    float o = random(256);
+    float l = random(256);
   }
 
   void display() {
-    ellipse (x, y, radius, radius);
-    fill (255, 100, 103); 
+    fill (c, o, l); 
     ellipse (x,y, radius, radius); 
   }
 
   void move() {
-    float[][]paths = { {10,0}, {0,10}, {-10,0}, {0,-10}, };
+    float[][]paths = { {5,0}, {0,5}, {-5,0}, {0,-5}, };
     int i = (int)random(0,4);
     float dX = paths[i][0];
     float dY = paths[i][1];
@@ -182,7 +188,7 @@ void setup() {
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   for (int i = 0; i < 10; i++) {
-    Ball b = new Ball(50, 50);
+    Ball b = new Ball(50+random(width-100), 50+random(height-100),25);
     thingsToDisplay.add(b);
     thingsToMove.add(b);
     Rock r = new Rock(50+random(width-100), 50+random(height-100));
