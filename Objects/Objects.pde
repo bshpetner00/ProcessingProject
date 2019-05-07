@@ -33,16 +33,14 @@ public class LivingRock extends Rock implements Moveable {
   float xspeed, yspeed; 
   LivingRock(float x, float y) {
     super(x, y);
-    xspeed = 0;
-    yspeed = 0; 
+    xspeed = random(5);
+    yspeed = random(5); 
   }
   void move() {
-    xspeed += random(1);
-    yspeed += random(1);
-    if (x + xspeed > 1000 || x + xspeed < 0){  
+    if (x + xspeed > 600 || x + xspeed < 0){  
       xspeed = xspeed*-1; 
     }
-    if (y + yspeed > 800 || y + yspeed < 0) {
+    if (y + yspeed > 600 || y + yspeed < 0) {
       yspeed = yspeed*-1; 
     }
     x += xspeed; 
