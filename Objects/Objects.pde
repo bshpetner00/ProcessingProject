@@ -171,6 +171,9 @@ class Ball extends Thing implements Moveable {
   }
 }
 
+class colorChangingBall extends Ball { 
+}
+
 /*DO NOT EDIT THE REST OF THIS */
 
 ArrayList<Displayable> thingsToDisplay;
