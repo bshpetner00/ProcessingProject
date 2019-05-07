@@ -24,8 +24,7 @@ class Rock extends Thing {
   void display(){
     fill(random(256),random(256),random(256));
     ellipse(x, y, (int)random(20)+10,(int)random(20)+10);
-    PImage rockP = loadImage("rock.jpg");
-    image(rockP,0,0);
+    
   }
 }
 
@@ -159,7 +158,16 @@ class Ball extends Thing implements Moveable {
   }
 
   void move() {
-    /* ONE PERSON WRITE THIS */
+    float[][]paths = { {10,0}, {0,10}, {-10,0}, {0,-10}, };
+    int i = (int)random(0,4);
+    float dX = paths[i][0];
+    float dY = paths[i][1];
+    if (x+dX > 25 && x+dX < width - 25) {
+      x += dX; 
+    } 
+    if (y+dY > 25 && y+dY < height - 25) {
+      y += dY; 
+    }
   }
 }
 
@@ -174,7 +182,7 @@ void setup() {
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   for (int i = 0; i < 10; i++) {
-    Ball b = new Ball(50+random(width-100), 50+random(height-100));
+    Ball b = new Ball(50, 50);
     thingsToDisplay.add(b);
     thingsToMove.add(b);
     Rock r = new Rock(50+random(width-100), 50+random(height-100));
