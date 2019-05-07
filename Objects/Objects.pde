@@ -22,7 +22,7 @@ class Rock extends Thing {
   }
   
   void display(){
-    fill(random(256),random(256),random(256));
+    fill(0,0,255);
     ellipse(x, y, (int)random(20)+10,(int)random(20)+10);
     
   }
