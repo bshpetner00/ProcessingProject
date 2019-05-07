@@ -32,7 +32,9 @@ class Rock extends Thing {
 public class LivingRock extends Rock implements Moveable {
   float xspeed, yspeed;
   boolean up = true; 
-  int counter = 30; 
+  int counter = 30;
+  int counter2 = 200;
+  int path = (int)random(3)+1; 
   int sides = 1; 
   LivingRock(float x, float y) {
     super(x, y);
@@ -115,6 +117,24 @@ public class LivingRock extends Rock implements Moveable {
         x += s; 
         counter--;
       }
+    }
+  }
+  void moveRandom() {
+    if (counter2 == 0) {
+      counter2 = 200; 
+      path = (int)random(3)+1; 
+    }
+    if (path == 1) {
+      move(); 
+      counter2--; 
+    }
+    else if (path == 2) {
+      moveSteps(); 
+      counter2--;
+    }
+    else {
+      moveRect();
+      counter2--;
     }
   }
 }
