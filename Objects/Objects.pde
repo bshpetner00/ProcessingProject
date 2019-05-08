@@ -22,6 +22,7 @@ abstract class Thing implements Displayable {
 
 class Rock extends Thing implements Collideable {
   PImage rockP; 
+  int pic; 
   int major = (int)random(20)+10;
   int minor = (int)random(20)+10;
   Rock(float x, float y) {
@@ -29,9 +30,11 @@ class Rock extends Thing implements Collideable {
     float r = random (2); 
     if (r > 0 && r <= 1) { 
       rockP = loadImage("rock.png");
+      pic = 1; 
     }
     else { 
       rockP = loadImage ("otherrock.png"); 
+      pic = 2; 
     }
   }
   
@@ -68,15 +71,22 @@ public class LivingRock extends Rock implements Moveable, Collideable {
   }
   
   void display () { 
-    super.display (); 
-    eye (x - 2, y + 5); 
-    eye (x + 10, y + 5); 
+    super.display ();
+    if (pic == 1) {
+      eye (x + 4, y + 5); 
+      eye (x + 12, y + 5); 
+    }
+    else {
+      eye (x + 4, y + 10); 
+      eye (x + 10, y + 10); 
+    }
   }
   
   void eye (float xcor, float ycor) { 
-    fill (255); 
-    ellipse (xcor,ycor, 4,2); 
-    ellipse (xcor,ycor, .75,.75);  
+    fill (255, 255, 255); 
+    ellipse (xcor, ycor, 3.25,3.25); 
+    fill (0, 0 ,0); 
+    ellipse (xcor, ycor, .75,.75);  
   }
   
   void move() {
