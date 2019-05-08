@@ -21,16 +21,22 @@ abstract class Thing implements Displayable {
 }
 
 class Rock extends Thing implements Collideable {
-  PImage rockP = loadImage("rock.png");
+  PImage rockP; 
   int major = (int)random(20)+10;
   int minor = (int)random(20)+10;
   Rock(float x, float y) {
     super(x, y);
+    rockP = loadImage("rock.png");
   }
   
   void display(){
+    image (rockP, x,y);
+    rockP.resize (major, minor); 
+    image (rockP, x,y); 
+    /*
     fill(0,0,255); //blue
     ellipse(x, y,major,minor);
+    */
   }
   
   boolean isTouching(Thing other){
