@@ -189,15 +189,15 @@ public class LivingRock extends Rock implements Moveable, Collideable {
 
 class Ball extends Thing implements Moveable {
   float radius; 
-  PImage ballpic;
+  PImage ballP = loadImage ("ball.png");
   int c,o,l;
   Ball (float x, float y) { 
     super (x, y); 
     radius = random (15);
-    ballpic = loadImage ("ball.png");
     float c = random(256);
     float o = random(256);
     float l = random(256);
+    
   }
   Ball(float x, float y, float r) {
     super(x, y);
@@ -208,8 +208,13 @@ class Ball extends Thing implements Moveable {
   }
 
   void display() {
-    fill (c, o, l); 
-    ellipse (x,y, radius, radius); 
+   // fill (c, o, l); 
+    //ellipse (x,y, radius, radius); 
+    int major = (int)random(height)+10;
+    int minor = (int)random(width)+10;
+   // image(ballP,10,10);
+    ballP.resize(20,20);
+    image(ballP,major,minor);
   }
 
   void move() {
@@ -245,7 +250,6 @@ ArrayList<Collideable> ListOfCollideables;
 
 void setup() {
   size(1000, 800);
-
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   ListOfCollideables = new ArrayList<Collideable>();
