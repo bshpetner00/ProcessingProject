@@ -23,8 +23,8 @@ abstract class Thing implements Displayable {
 class Rock extends Thing implements Collideable {
   PImage rockP; 
   int pic; 
-  int major = (int)random(20)+10;
-  int minor = (int)random(20)+10;
+  int major = (int)random(20)+30;
+  int minor = major - (int)random(20)+30;
   Rock(float x, float y) {
     super(x, y);
     float r = random (2); 
