@@ -26,7 +26,7 @@ class Rock extends Thing implements Collideable {
   int minor = (int)random(20)+10;
   Rock(float x, float y) {
     super(x, y);
-    int r = random (2); 
+    float r = random (2); 
     if (r > 0 && r <= 1) { 
       rockP = loadImage("rock.png");
     }
@@ -62,6 +62,19 @@ public class LivingRock extends Rock implements Moveable, Collideable {
     xspeed = random(5);
     yspeed = random(5); 
   }
+  
+  void display () { 
+    super.display (); 
+    eye (x - 2, y + 5); 
+    eye (x + 10, y + 5); 
+  }
+  
+  void eye (float xcor, float ycor) { 
+    fill (255); 
+    ellipse (xcor,ycor, 4,2); 
+    ellipse (xcor,ycor, .75,.75);  
+  }
+  
   void move() {
     if (x + xspeed > 1000 || x + xspeed < 0){  
       xspeed = xspeed*-1; 
