@@ -20,19 +20,25 @@ abstract class Thing implements Displayable {
   abstract void display();
 }
 
-class Rock extends Thing {
+class Rock extends Thing implements Collideable {
+  PImage rockP = loadImage("rock.png");
+  int major = (int)random(20)+10;
+  int minor = (int)random(20)+10;
   Rock(float x, float y) {
     super(x, y);
   }
   
   void display(){
-    fill(0,0,255);
-    ellipse(x, y, (int)random(20)+10,(int)random(20)+10);
-    
+    fill(0,0,255); //blue
+    ellipse(x, y,major,minor);
+  }
+  
+  boolean isTouching(Thing other){
+    return false;
   }
 }
 
-public class LivingRock extends Rock implements Moveable {
+public class LivingRock extends Rock implements Moveable, Collideable {
   float xspeed, yspeed;
   boolean up = true; 
   int counter = 30;
@@ -168,7 +174,7 @@ class Ball extends Thing implements Moveable {
   }
 
   void move() {
-    float[][]paths = { {5,0}, {0,5}, {-5,0}, {0,-5}, };
+    float[][]paths = { {0.5,0}, {0,0.5}, {-0.5,0}, {0,-0.5}, };
     int i = (int)random(0,4);
     float dX = paths[i][0];
     float dY = paths[i][1];
@@ -182,12 +188,16 @@ class Ball extends Thing implements Moveable {
 }
 
 class colorChangingBall extends Ball { 
+  colorChangingBall(float x, float y){
+    super(x,y);
+  }
 }
 
 /*DO NOT EDIT THE REST OF THIS */
 
 ArrayList<Displayable> thingsToDisplay;
 ArrayList<Moveable> thingsToMove;
+ArrayList<Collideable> ListOfCollideables;
 
 void setup() {
   size(1000, 800);
@@ -218,5 +228,8 @@ void draw() {
   }
   for (Moveable thing : thingsToMove) {
     thing.move();
+  }
+  for ( Collideable c : ListOfCollideables){
+    
   }
 }
