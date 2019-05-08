@@ -5,3 +5,6 @@ Maisha Miah
 Tina Shi
   - Yesterday I worked on displaying rocks.
   - Benjamin and I are working on ball changes.
+Vivien Lu
+  - Yesterday I worked on making living rocks move in different patterns. 
+  
