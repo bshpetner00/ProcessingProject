@@ -26,7 +26,13 @@ class Rock extends Thing implements Collideable {
   int minor = (int)random(20)+10;
   Rock(float x, float y) {
     super(x, y);
-    rockP = loadImage("rock.png");
+    int r = random (2); 
+    if (r > 0 && r <= 1) { 
+      rockP = loadImage("rock.png");
+    }
+    else { 
+      rockP = loadImage ("otherrock.png"); 
+    }
   }
   
   void display(){
