@@ -190,21 +190,17 @@ public class LivingRock extends Rock implements Moveable, Collideable {
 class Ball extends Thing implements Moveable {
   float radius; 
   PImage ballP = loadImage ("ball.png");
-  int c,o,l;
+  float c = random(256);
+  float o = random(256);
+  float l = random(256);
   Ball (float x, float y) { 
     super (x, y); 
     radius = random (15);
-    float c = random(256);
-    float o = random(256);
-    float l = random(256);
     
   }
   Ball(float x, float y, float r) {
     super(x, y);
     radius = r;
-    float c = random(256);
-    float o = random(256);
-    float l = random(256);
   }
 
   void display() {
@@ -239,6 +235,26 @@ class Ball extends Thing implements Moveable {
 class colorChangingBall extends Ball { 
   colorChangingBall(float x, float y){
     super(x,y);
+  }
+}
+
+class basketball extends Ball{
+  PImage ballP = loadImage ("ball.png");
+  float dX = random(height);
+  float dY = random(width);
+  basketball(float x, float y){
+    super(x,y);
+  }
+  
+  void display(){
+    int x = (int)random(height)+10;
+    int y = (int)random(width)+10;
+    ballP.resize(20,20);
+    image(ballP,dX,dY);
+  }
+  
+  void move(){
+    
   }
 }
 
