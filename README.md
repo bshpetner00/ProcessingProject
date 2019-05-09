@@ -10,5 +10,7 @@ Tina Shi
   - Benjamin and I are working on ball changes.
 
 Vivien Lu
-  - Yesterday I worked on making living rocks move in different patterns. 
+  - Monday: I worked on making living rocks move in different patterns. 
+  - Tuesday: I made some adjustments to Maisha's method that adds eyes to lviing rocks. 
+  - Wednesday: I made adjustments to the rock and living rock constructors so that the images are loaded in setup and passed into contructors. I also made the rocks larger and adjust living rock's eyes accordingly.   
   
