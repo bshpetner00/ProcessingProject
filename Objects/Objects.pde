@@ -66,21 +66,21 @@ public class LivingRock extends Rock implements Moveable, Collideable {
   
   void display () { 
     super.display ();
-    if (pic == 1) {
-      eye (x + 4, y + 5); 
-      eye (x + 12, y + 5); 
-    }
-    else {
-      eye (x + 4, y + 10); 
-      eye (x + 10, y + 10); 
+    if (pic == 1) { //gray rock
+      eye (x + 14, y + 15); 
+      eye (x + 26, y + 15); 
+    }    
+    else { //red rock
+      eye (x + 14, y + 25); 
+      eye (x + 26, y + 25); 
     }
   }
   
   void eye (float xcor, float ycor) { 
-    fill (255, 255, 255); 
-    ellipse (xcor, ycor, 3.25,3.25); 
-    fill (0, 0 ,0); 
-    ellipse (xcor, ycor, .75,.75);  
+    fill (255); 
+    ellipse (xcor, ycor, 10, 10); 
+    fill (0); 
+    ellipse (xcor, ycor, 5, 5);  
   }
   
   void move() {
