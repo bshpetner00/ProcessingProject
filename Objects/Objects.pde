@@ -23,29 +23,23 @@ abstract class Thing implements Displayable {
 class Rock extends Thing implements Collideable {
   PImage rockP; 
   int pic; 
-  int major = (int)random(20)+30;
-  int minor = major - (int)random(20)+30;
-  Rock(float x, float y) {
+  float major = random(20)+30;
+  float minor = major - random(20)+30;
+  Rock(float x, float y, PImage pic1, PImage pic2) {
     super(x, y);
-    float r = random (2); 
-    if (r > 0 && r <= 1) { 
-      rockP = loadImage("rock.png");
+    int r = (int)random(2); 
+    if (r == 0) { 
+      rockP = pic1; 
       pic = 1; 
     }
     else { 
-      rockP = loadImage ("otherrock.png"); 
+      rockP = pic2; 
       pic = 2; 
     }
   }
   
-  void display(){
-    image (rockP, x,y);
-    rockP.resize (major, minor); 
-    image (rockP, x,y); 
-    /*
-    fill(0,0,255); //blue
-    ellipse(x, y,major,minor);
-    */
+  void display(){ 
+    image (rockP, x,y, major, minor);
   }
   
   float distance (float x1, float y1, float x2, float y2) { 
@@ -64,8 +58,8 @@ public class LivingRock extends Rock implements Moveable, Collideable {
   int counter2 = 200;
   int path = (int)random(3)+1; 
   int sides = 1; 
-  LivingRock(float x, float y) {
-    super(x, y);
+  LivingRock(float x, float y, PImage pic1, PImage pic2) {
+    super(x, y, pic1, pic2);
     xspeed = random(5);
     yspeed = random(5); 
   }
@@ -266,19 +260,18 @@ ArrayList<Collideable> ListOfCollideables;
 
 void setup() {
   size(1000, 800);
+  PImage Pic1 = loadImage("rock.png"); 
+  PImage Pic2 = loadImage ("otherrock.png"); 
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   ListOfCollideables = new ArrayList<Collideable>();
   for (int i = 0; i < 10; i++) {
-    Ball b = new Ball(50+random(width-100), 50+random(height-100),25);
-    thingsToDisplay.add(b);
-    thingsToMove.add(b);
-    Rock r = new Rock(50+random(width-100), 50+random(height-100));
+    Rock r = new Rock(50+random(width-100), 50+random(height-100), Pic1, Pic2);
     thingsToDisplay.add(r);
     ListOfCollideables.add(r);
   }
   for (int i = 0; i < 30; i++) {
-    LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100));
+    LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100), Pic1, Pic2);
     thingsToDisplay.add(m);
     thingsToMove.add(m);
     ListOfCollideables.add(m);
