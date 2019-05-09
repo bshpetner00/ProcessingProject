@@ -60,8 +60,8 @@ public class LivingRock extends Rock implements Moveable, Collideable {
   int sides = 1; 
   LivingRock(float x, float y, PImage pic1, PImage pic2) {
     super(x, y, pic1, pic2);
-    xspeed = random(5);
-    yspeed = random(5); 
+    xspeed = random(15);
+    yspeed = random(15); 
   }
   
   void display () { 
