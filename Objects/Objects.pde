@@ -266,6 +266,9 @@ void setup() {
   thingsToMove = new ArrayList<Moveable>();
   ListOfCollideables = new ArrayList<Collideable>();
   for (int i = 0; i < 10; i++) {
+    Ball b = new Ball(50+random(width-100), 50+random(height-100),25);
+    thingsToDisplay.add(b);
+    thingsToMove.add(b);
     Rock r = new Rock(50+random(width-100), 50+random(height-100), Pic1, Pic2);
     thingsToDisplay.add(r);
     ListOfCollideables.add(r);
