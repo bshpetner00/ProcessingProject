@@ -191,27 +191,26 @@ class Ball extends Thing implements Moveable {
   Ball (float x, float y) { 
     super (x, y); 
     radius = random (15);
-    dX = random(15);
-    dY = random(15);
+    dX = random(5);
+    dY = random(5);
   }
   Ball(float x, float y, float r) {
     super(x, y);
     radius = r; 
-    dX = random(15);
-    dY = random(15);
+    dX = random(5);
+    dY = random(5);
   }
   void display() {
     fill (c, o, l); 
     ellipse (x,y, radius, radius); 
   }
-
   void move() {
-    if (x+dX > 0 && x+dX < width) {
+    if (x+dX > 0 && x+dX < width-radius) {
       x += dX; 
     }else{
       dX *= -1;
     }
-    if (y+dY > 0 && y+dY < height) {
+    if (y+dY > 0 && y+dY < height-radius) {
       y += dY; 
     }else{
       dY *= -1;
@@ -230,28 +229,27 @@ class colorChangingBall extends Ball {
   }
 }
 
-class basketball extends Ball{
+class Basketball extends Ball{
   PImage pic;
-  float dX = random(10);
-  float dY = random(10);
+  float dX;
+  float dY;
+  int radius;
   
-  basketball(float x, float y, PImage ballP){
+  Basketball(float x, float y, PImage ballP){
     super(x,y);
     pic = ballP;
+    dX = random(10);
+    dY = random(10);
+    radius = (int)random(30)+20;
+    pic.resize(radius,radius);
   }
   
   void display(){
-    int x = (int)random(height);
-    int y = (int)random(width);
-     int major = (int)random(height)+10;
-    int minor = (int)random(width)+10;
-   // image(ballP,10,10);
-    pic.resize(20,20);
-    image(pic,major,minor);
+    image(pic,x,y);
   }
   
   void move(){
-    
+    super.move();
   }
 }
 
@@ -273,6 +271,9 @@ void setup() {
     Ball b = new Ball(50+random(width-100), 50+random(height-100),25);
     thingsToDisplay.add(b);
     thingsToMove.add(b);
+    Basketball bb = new Basketball(50+random(width-100), 50+random(height-100),ballP);
+    thingsToDisplay.add(bb);
+    thingsToMove.add(bb);
     Rock r = new Rock(50+random(width-100), 50+random(height-100), Pic1, Pic2);
     thingsToDisplay.add(r);
     ListOfCollideables.add(r);
