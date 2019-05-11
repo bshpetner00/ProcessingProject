@@ -183,40 +183,38 @@ public class LivingRock extends Rock implements Moveable, Collideable {
 
 class Ball extends Thing implements Moveable {
   float radius; 
-  PImage ballP = loadImage ("ball.png");
+  PImage pic;
   float c = random(256);
   float o = random(256);
   float l = random(256);
+  float dX, dY;
   Ball (float x, float y) { 
     super (x, y); 
     radius = random (15);
-    
+    dX = random(15);
+    dY = random(15);
   }
   Ball(float x, float y, float r) {
     super(x, y);
-    radius = r;
+    radius = r; 
+    dX = random(15);
+    dY = random(15);
   }
-
   void display() {
-   // fill (c, o, l); 
-    //ellipse (x,y, radius, radius); 
-    int major = (int)random(height)+10;
-    int minor = (int)random(width)+10;
-   // image(ballP,10,10);
-    ballP.resize(20,20);
-    image(ballP,major,minor);
+    fill (c, o, l); 
+    ellipse (x,y, radius, radius); 
   }
 
   void move() {
-    float[][]paths = { {10,0}, {0,10}, {-10,0}, {0,-10}, };
-    int i = (int)random(0,4);
-    float dX = paths[i][0];
-    float dY = paths[i][1]; 
-    if (x+dX > 25 && x+dX < width - 25) {
+    if (x+dX > 0 && x+dX < width) {
       x += dX; 
-    } 
-    if (y+dY > 25 && y+dY < height - 25) {
+    }else{
+      dX *= -1;
+    }
+    if (y+dY > 0 && y+dY < height) {
       y += dY; 
+    }else{
+      dY *= -1;
     }
   }
   
@@ -233,18 +231,23 @@ class colorChangingBall extends Ball {
 }
 
 class basketball extends Ball{
-  PImage ballP = loadImage ("ball.png");
-  float dX = random(height);
-  float dY = random(width);
-  basketball(float x, float y){
+  PImage pic;
+  float dX = random(10);
+  float dY = random(10);
+  
+  basketball(float x, float y, PImage ballP){
     super(x,y);
+    pic = ballP;
   }
   
   void display(){
-    int x = (int)random(height)+10;
-    int y = (int)random(width)+10;
-    ballP.resize(20,20);
-    image(ballP,dX,dY);
+    int x = (int)random(height);
+    int y = (int)random(width);
+     int major = (int)random(height)+10;
+    int minor = (int)random(width)+10;
+   // image(ballP,10,10);
+    pic.resize(20,20);
+    image(pic,major,minor);
   }
   
   void move(){
@@ -262,6 +265,7 @@ void setup() {
   size(1000, 800);
   PImage Pic1 = loadImage("rock.png"); 
   PImage Pic2 = loadImage ("otherrock.png"); 
+  PImage ballP = loadImage ("ball.png");
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   ListOfCollideables = new ArrayList<Collideable>();
