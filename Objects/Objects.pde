@@ -205,28 +205,18 @@ class Ball extends Thing implements Moveable {
     ellipse (x,y, radius, radius); 
   }
   void move() {
-    if (x+dX > 0 && x+dX < width-radius) {
+    if (x+dX > (radius/2) && x+dX < width-radius) {
       x += dX; 
     }else{
       dX *= -1;
     }
-    if (y+dY > 0 && y+dY < height-radius) {
+    if (y+dY > (radius/2) && y+dY < height-radius) {
       y += dY; 
     }else{
       dY *= -1;
     }
   }
   
-  void changeC(){
-    fill(255,0,0); //red
-    ellipse(x,y,radius,radius);
-  }
-}
-
-class colorChangingBall extends Ball { 
-  colorChangingBall(float x, float y){
-    super(x,y);
-  }
 }
 
 class Basketball extends Ball{
@@ -238,9 +228,7 @@ class Basketball extends Ball{
   Basketball(float x, float y, PImage ballP){
     super(x,y);
     pic = ballP;
-    dX = random(10);
-    dY = random(10);
-    radius = (int)random(30)+20;
+    radius = (int)random(20,30);
     pic.resize(radius,radius);
   }
   
@@ -248,8 +236,51 @@ class Basketball extends Ball{
     image(pic,x,y);
   }
   
-  void move(){
-    super.move();
+  void move(){ //somewhat circular motion
+    float time = millis()/1000;
+    x += random(5)*cos(time);
+    y += random(5)*sin(time);
+    if(x < 0){
+      x = 0;
+    }else if(x > width-radius){
+      x = width-radius;
+    }else if(y < 0){
+      y = 0;
+    }else if(y > height-radius){
+      y = height-radius;
+    }else{ ;}
+  }
+}
+
+class otherBall extends Ball { 
+  PImage pic;
+  float dX;
+  float dY;
+  int radius;
+  
+  otherBall(float x, float y){
+    super(x,y);
+    radius = (int)random(10,20);
+    for(int i=0; i<=2*PI; i+=PI/2){
+      dX = cos(i);
+      dY = sin(i);
+    }
+  }
+  void display() {
+    fill (c, o, l); 
+    ellipse (x,y, radius, radius); 
+  }
+  void move() {
+    if (x+dX > 0 && x+dX < width-radius) {
+      x += dX; 
+    }else{
+      dX *= -1;
+    }
+    if (y+dY > (radius/2) && y+dY < height-radius) {
+      y += dY; 
+    }else{
+      dY *= -1;
+    }
   }
 }
 
@@ -274,6 +305,9 @@ void setup() {
     Basketball bb = new Basketball(50+random(width-100), 50+random(height-100),ballP);
     thingsToDisplay.add(bb);
     thingsToMove.add(bb);
+    otherBall ob = new otherBall(50+random(width-100), 50+random(height-100));
+    thingsToDisplay.add(ob);
+    thingsToMove.add(ob);
     Rock r = new Rock(50+random(width-100), 50+random(height-100), Pic1, Pic2);
     thingsToDisplay.add(r);
     ListOfCollideables.add(r);
@@ -297,11 +331,13 @@ void draw() {
   /*
   fill(255,125,25);
   ellipse(200,400,50,50);*/
-  Ball b = new Ball(200,400);
-  
+  Ball b = new Ball(width/2,height/2,width/100);
+  fill (0, 0, 0); 
+  ellipse (width/2,height/2, width/100, width/100); 
   for ( Collideable c : ListOfCollideables){
     if(c.isTouching(b)){
-      b.changeC();
+      fill (255, 0, 0); 
+      ellipse (width/2,height/2, width/100, width/100); 
     }
   }
 }
