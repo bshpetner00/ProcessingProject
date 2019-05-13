@@ -42,12 +42,8 @@ class Rock extends Thing implements Collideable {
     image (rockP, x,y, major, minor);
   }
   
-  float distance (float x1, float y1, float x2, float y2) { 
-    return (sqrt ( pow ((x2 - x1),2) + pow ((y2 - y1), 2))); 
-  }
-  
-  boolean isTouching(Thing other){
-    return this.x == other.x || this.y == other.y ;
+  boolean isTouching(Thing other) {
+    return dist(x,y,other.x,other.y) <= 30;
   }
 }
 
@@ -194,7 +190,12 @@ class Ball extends Thing implements Moveable {
     dY = random(5);
   }
   void display() {
-    fill (c, o, l); 
+    fill(c, o, l);
+    for (Collideable col: ListOfCollideables) {
+      if (col.isTouching(this)) {
+        fill (255,0,0);
+      }
+    }
     ellipse (x,y, radius, radius); 
   }
   void move() {
