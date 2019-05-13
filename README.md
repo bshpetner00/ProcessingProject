@@ -8,7 +8,7 @@ Ben Shpetner
   - Made balls display in different colors
   - Created random movement of balls based on random choice of preset motions
   - Made sure that balls would stop on edges of screen and not go through
-  - Tried collision color system
+  - Created collision color system
 
 Tina Shi
   - Yesterday I worked on displaying rocks.
