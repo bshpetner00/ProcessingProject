@@ -261,16 +261,15 @@ class otherBall extends Ball {
   otherBall(float x, float y){
     super(x,y);
     radius = (int)random(10,20);
-    for(int i=0; i<=2*PI; i+=PI/2){
-      dX = cos(i);
-      dY = sin(i);
-    }
   }
   void display() {
     fill (c, o, l); 
     ellipse (x,y, radius, radius); 
   }
   void move() {
+    float time = millis()/1000;
+    x += random(-5,5);
+    y += pow(x,2) - 9.81*pow(time,2);
     if (x+dX > 0 && x+dX < width-radius) {
       x += dX; 
     }else{
@@ -300,22 +299,22 @@ void setup() {
   ListOfCollideables = new ArrayList<Collideable>();
   for (int i = 0; i < 10; i++) {
     Ball b = new Ball(50+random(width-100), 50+random(height-100),25);
-    thingsToDisplay.add(b);
-    thingsToMove.add(b);
+    //thingsToDisplay.add(b);
+    //thingsToMove.add(b);
     Basketball bb = new Basketball(50+random(width-100), 50+random(height-100),ballP);
-    thingsToDisplay.add(bb);
-    thingsToMove.add(bb);
+   // thingsToDisplay.add(bb);
+  //  thingsToMove.add(bb);
     otherBall ob = new otherBall(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(ob);
     thingsToMove.add(ob);
     Rock r = new Rock(50+random(width-100), 50+random(height-100), Pic1, Pic2);
-    thingsToDisplay.add(r);
+  //  thingsToDisplay.add(r);
     ListOfCollideables.add(r);
   }
   for (int i = 0; i < 30; i++) {
     LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100), Pic1, Pic2);
-    thingsToDisplay.add(m);
-    thingsToMove.add(m);
+   // thingsToDisplay.add(m);
+  //  thingsToMove.add(m);
     ListOfCollideables.add(m);
   }
 }
