@@ -55,13 +55,13 @@ public class LivingRock extends Rock implements Moveable, Collideable {
   float xspeed, yspeed;
   boolean up = true; 
   int counter = 30;
-  int counter2 = 200;
-  int path = (int)random(3)+1; 
+  int path; 
   int sides = 1; 
   LivingRock(float x, float y, PImage pic1, PImage pic2) {
     super(x, y, pic1, pic2);
     xspeed = random(15);
     yspeed = random(15); 
+    path = (int)random(3); 
   }
   
   void display () { 
@@ -83,7 +83,7 @@ public class LivingRock extends Rock implements Moveable, Collideable {
     ellipse (xcor, ycor, 5, 5);  
   }
   
-  void move() {
+  void moveRandom() {
     if (x + xspeed > 1000 || x + xspeed < 0){  
       xspeed = xspeed*-1; 
     }
@@ -161,22 +161,15 @@ public class LivingRock extends Rock implements Moveable, Collideable {
       }
     }
   }
-  void moveRandom() {
-    if (counter2 == 0) {
-      counter2 = 200; 
-      path = (int)random(3)+1; 
+  void move() {
+    if (path == 0) {
+      moveRandom(); 
     }
-    if (path == 1) {
-      move(); 
-      counter2--; 
-    }
-    else if (path == 2) {
+    else if (path == 1) {
       moveSteps(); 
-      counter2--;
     }
     else {
       moveRect();
-      counter2--;
     }
   }
 }

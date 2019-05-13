@@ -4,6 +4,12 @@ Maisha Miah
   - Vivien and I started working on rock changes. She will work on living rock while I will continue on making an image of the rock     and uploading it. 
   - Tuesday: I added two images of rocks to the constructor and added eyes to living rock
   - Wednesday: Vivien and I worked on taking loading the image in the constructor
+  
+Ben Shpetner
+  - Made balls display in different colors
+  - Created random movement of balls based on random choice of preset motions
+  - Made sure that balls would stop on edges of screen and not go through
+  - Tried collision color system
 
 Tina Shi
   - Yesterday I worked on displaying rocks.
